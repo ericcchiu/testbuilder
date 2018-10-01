@@ -53,9 +53,9 @@ var detectNetwork = (cardNumber) => {
   //Visa and Switch have some overlap in card numbers.  Choose network with longer prefix. In this situation, 
   //Switch will always override the Visa number.
   //By excluding Switch from the else statement, it will override the Visa numbers.
-  var switchPrefixes = ['4903', '4905', '4911', '4936', '564182', '633110', '6333', '6759'];
-  for ( var index = 0; index < switchPrefixes.length; index++){
-    if (switchPrefixes[index] === cardNumber.substr(0, switchPrefixes[index].length)) {
+  let switchPrefixes = ['4903', '4905', '4911', '4936', '564182', '633110', '6333', '6759'];
+  for (let i = 0; i < switchPrefixes.length; i++){
+    if (switchPrefixes[i] === cardNumber.substr(0, switchPrefixes[i].length)) {
     	if (cardNum.length === 19 || cardNum.length === 16 || cardNum.length === 18) {
     		network = 'Switch';
     	}
