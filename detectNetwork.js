@@ -14,11 +14,12 @@ var detectNetwork = (cardNumber) => {
 
   // Input validation 
   if (typeof cardNumber !== 'string') { 
-    return 'Card number input must be wrapped in string.';
+    console.log('Card number must be string but it has been converted for you.'); 
+    cardNumber = cardNumber.toString(); 
   } 
 
   let network = "Unable to detect network. Invalid card number. Please try again!";
-  let cardNum = cardNumber.split("");
+  let cardNum = cardNumber.toString().split("");
 
   // Check if network is Diner's club 
   if (cardNum[0] === '3' && (cardNum[1] === '8' || cardNum[1] === '9')) {
@@ -76,5 +77,5 @@ var detectNetwork = (cardNumber) => {
 
 console.log(detectNetwork('90832423414')); // Expect to be invalid network
 console.log(detectNetwork('4903123456789012')); //Expect to be Switch network 
-console.log(detectNetwork(234234111235435)); 
+console.log(detectNetwork(4903123456789012)); 
 
