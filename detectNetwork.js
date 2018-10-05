@@ -12,9 +12,14 @@ var detectNetwork = (cardNumber) => {
   // The Diner's Club network always starts with a 38 or 39 and is 14 digits long
   // The American Express network always starts with a 34 or 37 and is 15 digits long
 
+  // Input validation 
+  if (typeof cardNumber !== 'string') { 
+    return 'Card number input must be wrapped in string.';
+  } 
+
   let network = "Unable to detect network. Invalid card number. Please try again!";
   let cardNum = cardNumber.split("");
-  
+
   // Check if network is Diner's club 
   if (cardNum[0] === '3' && (cardNum[1] === '8' || cardNum[1] === '9')) {
   	if (cardNum.length === 14) {
@@ -51,8 +56,7 @@ var detectNetwork = (cardNumber) => {
   		network = "Union Pay";
   	}
   }
-  //Visa and Switch have some overlap in card numbers.  Choose network with longer prefix. In this situation, 
-  //Switch will always override the Visa number.
+
   //By excluding Switch from the else statement, it will override the Visa numbers.
   let switchPre = ['4903', '4905', '4911', '4936', '564182', '633110', '6333', '6759'];
   // Iterate over list of switch prefixes 
@@ -72,3 +76,5 @@ var detectNetwork = (cardNumber) => {
 
 console.log(detectNetwork('90832423414')); // Expect to be invalid network
 console.log(detectNetwork('4903123456789012')); //Expect to be Switch network 
+console.log(detectNetwork(234234111235435)); 
+
